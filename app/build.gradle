@@ -33,4 +33,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    provided "org.projectlombok:lombok:1.16.6"
+    compile "com.android.support:support-v4:23.+"
+
 }

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tonchidot.tab.glasssample">
 
-    <uses-permission
-        android:name="com.google.android.glass.permission.DEVELOPMENT" />
+    <uses-permission android:name="com.google.android.glass.permission.DEVELOPMENT" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <service
             android:name=".LiveCardService"
-            android:icon="@drawable/ic_glass_logo"
+            android:icon="@drawable/statusbar_icon"
             android:label="@string/title_activity_live_card_service">
             <intent-filter>
                 <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
@@ -26,6 +26,8 @@
         <activity
             android:name=".LiveCardMenuActivity"
             android:theme="@style/MenuTheme" />
+        <activity android:name=".ItemCardScrollActivity" />
+        <activity android:name=".ItemDetailActivity" />
     </application>
 
 </manifest>
