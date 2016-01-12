@@ -1,5 +1,6 @@
 package com.tonchidot.tab.glasssample;
 
+import com.tonchidot.tab.glasssample.base.BaseFragmentActivity;
 import com.tonchidot.tab.glasssample.model.Item;
 
 import android.support.v4.app.FragmentActivity;
@@ -13,12 +14,14 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
-public class ItemCardScrollActivity extends FragmentActivity {
+public class ItemCardScrollActivity extends BaseFragmentActivity {
     private ArrayList<Item> mList;
 
     private final static String TAG_ITEM_CARD_SCROLL = ItemCardScrollFragment.class.getName();
+    private final static String TAG_ITEM_CARD_OVERLAY = ItemCardOverlayFragment.class.getName();
 
     private ItemCardScrollFragment itemCardScrollFragment;
+    private ItemCardOverlayFragment itemCardOverlayFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class ItemCardScrollActivity extends FragmentActivity {
         if (itemCardScrollFragment == null)
             itemCardScrollFragment = ItemCardScrollFragment.newInstance(mList);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, itemCardScrollFragment, TAG_ITEM_CARD_SCROLL).commit();
+        visibleOverlay(mList.get(0));
 
     }
 
@@ -70,5 +74,12 @@ public class ItemCardScrollActivity extends FragmentActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private void visibleOverlay(Item item){
+        itemCardOverlayFragment = (ItemCardOverlayFragment) getSupportFragmentManager().findFragmentByTag(TAG_ITEM_CARD_OVERLAY);
+        if (itemCardOverlayFragment == null)
+            itemCardOverlayFragment = ItemCardOverlayFragment.newInstance(item);
+        getSupportFragmentManager().beginTransaction().replace(R.id.overlay_fragment_container, itemCardOverlayFragment, TAG_ITEM_CARD_OVERLAY).commit();
     }
 }

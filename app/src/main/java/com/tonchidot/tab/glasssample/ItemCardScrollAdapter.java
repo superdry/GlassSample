@@ -17,9 +17,11 @@ import java.util.List;
 public class ItemCardScrollAdapter extends CardScrollAdapter {
 
     private List<CardBuilder> mCards;
+    private List<Item> mList;
 
 
     public void setItems(Context context, List<Item> items){
+        mList = items;
         mCards = new ArrayList<>();
         for (Item item : items) {
             mCards.add(new CardBuilder(context, CardBuilder.Layout.CAPTION)
@@ -40,8 +42,12 @@ public class ItemCardScrollAdapter extends CardScrollAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public CardBuilder getItem(int position) {
         return mCards.get(position);
+    }
+
+    public Item getItemObject(int position) {
+        return mList.get(position);
     }
 
     @Override
