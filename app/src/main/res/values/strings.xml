@@ -1,6 +1,6 @@
 <resources>
     <string name="tab_voice_trigger_start">Open tab</string>
-    <string name="app_name">GlassSample</string>g>
+    <string name="app_name">GlassSample</string>
     <string name="title_activity_live_card_service">Hello World LiveCard</string>
     <string name="action_stop">Stop</string>
     <string name="hello_world">Hello world!</string>

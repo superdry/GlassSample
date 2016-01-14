@@ -16,6 +16,7 @@ public class Item implements Parcelable {
     String title;
     int imageId;
     String placeName;
+    String address;
 
     public Item(){
 
@@ -27,6 +28,7 @@ public class Item implements Parcelable {
         title = in.readString();
         imageId = in.readInt();
         placeName = in.readString();
+        address = in.readString();
     }
 
 
@@ -42,6 +44,7 @@ public class Item implements Parcelable {
         dest.writeString(title);
         dest.writeInt(imageId);
         dest.writeString(placeName);
+        dest.writeString(address);
     }
 
     @SuppressWarnings("unused")

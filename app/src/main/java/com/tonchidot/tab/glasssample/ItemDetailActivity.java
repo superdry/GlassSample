@@ -35,10 +35,11 @@ public class ItemDetailActivity extends Activity {
     private View buildView(Item item) {
         CardBuilder card = new CardBuilder(this, CardBuilder.Layout.AUTHOR);
         card.setText(item.getDescription());
-        card.setHeading(item.getTitle());
+        card.setHeading(item.getPlaceName());
+        card.setSubheading(item.getAddress());
         card.setIcon(item.getImageId());
-        card.setSubheading(item.getPlaceName());
-        card.setFootnote("tab");
+        card.setFootnote(item.getTitle());
+        card.setAttributionIcon(R.drawable.statusbar_icon);
         card.setTimestamp("just now");
         return card.getView();
     }
