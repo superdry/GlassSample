@@ -41,7 +41,7 @@ public class LiveCardService extends Service {
                     .addImage(items.get(0).getImageId())
                     .setFootnote(String.format("loc: %.6f, %.6f",Config.DEMO_LAT,Config.DEMO_LON))
                     .setAttributionIcon(R.drawable.statusbar_icon)
-                    .setTimestamp("just now");
+                    .setTimestamp(R.string.justnow);
             RemoteViews remoteViews = builder.getRemoteViews();
             mLiveCard.setViews(remoteViews);
 
@@ -159,7 +159,6 @@ public class LiveCardService extends Service {
                 139.7630036f,
                 "東京都中央区銀座4-4-1 1F"
         );
-
         return items;
     }
 

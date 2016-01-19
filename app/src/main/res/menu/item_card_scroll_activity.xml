@@ -2,13 +2,13 @@
     <item
         android:id="@+id/show_detail_menu"
         android:icon="@drawable/ic_desc_50"
-        android:title="Show Detail" />
+        android:title="@string/action_show_detail" />
     <item
         android:id="@+id/navi_item_menu"
         android:icon="@drawable/ic_directions_50"
-        android:title="Navigate" />
+        android:title="@string/action_navigate" />
     <item
         android:id="@+id/stop_app_menu"
         android:icon="@drawable/ic_no_50"
-        android:title="Stop" />
+        android:title="@string/action_stop" />
 </menu>

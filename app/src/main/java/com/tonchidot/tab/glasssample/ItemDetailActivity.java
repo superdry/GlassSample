@@ -40,7 +40,7 @@ public class ItemDetailActivity extends Activity {
         card.setIcon(item.getImageId());
         card.setFootnote(item.getTitle());
         card.setAttributionIcon(R.drawable.statusbar_icon);
-        card.setTimestamp("just now");
+        card.setTimestamp(R.string.justnow);
         return card.getView();
     }
 

@@ -1,9 +1,7 @@
 package com.tonchidot.tab.glasssample;
-
 import com.tonchidot.tab.glasssample.base.BaseFragmentActivity;
 import com.tonchidot.tab.glasssample.model.Item;
 
-import android.support.v4.app.FragmentActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,7 +26,7 @@ public class ItemCardScrollActivity extends BaseFragmentActivity {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        mList  = intent.getParcelableArrayListExtra("ITEM_LIST");
+        mList = intent.getParcelableArrayListExtra("ITEM_LIST");
         setContentView(R.layout.item_card_scroll_activity);
 
         itemCardScrollFragment = (ItemCardScrollFragment) getSupportFragmentManager().findFragmentByTag(TAG_ITEM_CARD_SCROLL);
@@ -36,7 +34,6 @@ public class ItemCardScrollActivity extends BaseFragmentActivity {
             itemCardScrollFragment = ItemCardScrollFragment.newInstance(mList);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, itemCardScrollFragment, TAG_ITEM_CARD_SCROLL).commit();
         visibleOverlay(mList.get(0));
-
     }
 
     @Override
@@ -49,15 +46,21 @@ public class ItemCardScrollActivity extends BaseFragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
-        switch (item.getItemId()){
+
+        Item current_item = mList.get(itemCardScrollFragment.getPosition());
+        switch (item.getItemId()) {
             case R.id.show_detail_menu:
                 intent = new Intent(this, ItemDetailActivity.class);
-                intent.putExtra("ITEM", mList.get(itemCardScrollFragment.getPosition()));
+                intent.putExtra("ITEM", current_item);
                 startActivity(intent);
                 return true;
             case R.id.navi_item_menu:
+                Uri uri = Uri.parse(String.format("google.navigation:q=%f,%f&mode=w",
+                                current_item.getPlaceGeo().getLat(),
+                                current_item.getPlaceGeo().getLon()
+                        ));
                 intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("google.navigation:q=" + Config.DEMO_LAT + "," + Config.DEMO_LON + "&mode=w"));
+                intent.setData(uri);
                 startActivity(intent);
                 return true;
             case R.id.stop_app_menu:
@@ -67,6 +70,7 @@ public class ItemCardScrollActivity extends BaseFragmentActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
@@ -76,7 +80,7 @@ public class ItemCardScrollActivity extends BaseFragmentActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void visibleOverlay(Item item){
+    private void visibleOverlay(Item item) {
         itemCardOverlayFragment = (ItemCardOverlayFragment) getSupportFragmentManager().findFragmentByTag(TAG_ITEM_CARD_OVERLAY);
         if (itemCardOverlayFragment == null)
             itemCardOverlayFragment = ItemCardOverlayFragment.newInstance(item);
